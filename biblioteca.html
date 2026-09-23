@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="C:/Users/ridri/.gemini/antigravity-ide/brain/c07186e7-5e50-459c-9c4d-47789980c8bb/favicon_dragonball_1790056541509.jpg">
+    <title>Biblioteca | DBZ Manga</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css?v=4">
+    <style>
+        body { background-color: #050505; }
+        .library-header {
+            padding: 100px 5% 50px;
+            text-align: center;
+        }
+        .library-title {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+        }
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 0 5% 100px;
+        }
+        .manga-card {
+            background-image: url('C:/Users/ridri/.gemini/antigravity-ide/brain/c07186e7-5e50-459c-9c4d-47789980c8bb/manga_cover_generic_1790055678746.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            height: 300px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .manga-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
+        .manga-card-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px;
+            text-align: center;
+        }
+        .manga-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        
+        /* Modal Viewer */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            flex-direction: column;
+        }
+        .pdf-modal.active {
+            display: flex;
+        }
+        .pdf-modal-header {
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111;
+            border-bottom: 1px solid #333;
+        }
+        .pdf-title {
+            font-family: var(--font-main);
+            font-weight: 700;
+            color: #fff;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .close-btn:hover { color: var(--accent-color); }
+        .pdf-iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="logo">SAIYAN<span>VERSE</span></div>
+        <nav>
+            <a href="index.html#hero">Inicio</a>
+            <a href="index.html#manga">Historia</a>
+            <a href="index.html#transformations">Fases</a>
+            <a href="biblioteca.html" style="color: var(--accent-color);">Manga Completo</a>
+        </nav>
+    </header>
+
+    <div class="library-header">
+        <h1 class="library-title">BIBLIOTECA ORIGINAL</h1>
+        <p>Lee todos los volúmenes del manga oficial</p>
+    </div>
+
+    <div class="library-grid" id="library-grid">
+        <!-- JS will populate cards here -->
+    </div>
+
+    <!-- PDF Viewer Modal -->
+    <div class="pdf-modal" id="pdf-modal">
+        <div class="pdf-modal-header">
+            <div class="pdf-title" id="pdf-title">Volumen</div>
+            <button class="close-btn" id="close-modal">&times;</button>
+        </div>
+        <iframe class="pdf-iframe" id="pdf-iframe"></iframe>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 40px 20px; background: #050505; border-top: 1px solid rgba(255,255,255,0.05); font-family: var(--font-body); color: #888; font-size: 0.9rem; position: relative; z-index: 10;">
+        <p>Creado por <a href="https://rodria45.github.io/rodrigo-antunez-portfolio/" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: bold; transition: color 0.3s ease;">Rodrigo Antunez</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="audioPlayer.js"></script>
+    <script src="biblioteca.js"></script>
+</body>
+</html>
