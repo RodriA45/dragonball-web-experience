@@ -47,11 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         
         card.addEventListener('click', () => {
-            // Abrir el modal y cargar el PDF
-            modalTitle.textContent = title;
-            // The path must correctly reference the folder
-            iframe.src = `Manga Dragon ball super completo/${file}`;
-            modal.classList.add('active');
+            // Abrir la carpeta de Google Drive en una nueva pestaña
+            window.open('https://drive.google.com/drive/folders/1NktWfhbPDfYaIuWYLoP-xOD7acKWQAAd?usp=sharing', '_blank');
         });
 
         grid.appendChild(card);
