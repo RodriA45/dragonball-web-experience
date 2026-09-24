@@ -34,6 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalTitle = document.getElementById('pdf-title');
     const closeBtn = document.getElementById('close-modal');
 
+    // Helper to extract Folder ID from Google Drive URL
+    function getFolderId(url) {
+        const match = url.match(/folders\/([a-zA-Z0-9-_]+)/);
+        return match ? match[1] : null;
+    }
+
     // Populate the grid
     mangaVolumes.forEach(manga => {
         const card = document.createElement('div');
@@ -45,8 +51,16 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         
         card.addEventListener('click', () => {
-            // Abrir la carpeta específica de Google Drive del tomo clickeado en una nueva pestaña
-            window.open(manga.link, '_blank');
+            const folderId = getFolderId(manga.link);
+            if (folderId) {
+                modalTitle.textContent = manga.title;
+                // Usar la vista incrustada de Google Drive para carpetas
+                iframe.src = `https://drive.google.com/embeddedfolderview?id=${folderId}#grid`;
+                modal.classList.add('active');
+            } else {
+                // Fallback por si la URL no es de carpeta
+                window.open(manga.link, '_blank');
+            }
         });
 
         grid.appendChild(card);
